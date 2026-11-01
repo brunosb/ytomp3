@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Download, FolderOpen, Link, LoaderCircle, Music2, Settings2 } from 'lucide-react'
 import { invoke } from '@tauri-apps/api/core'
 import { open } from '@tauri-apps/plugin-dialog'
+import logoUrl from './assets/logo.jpg'
 
 type DownloadState = 'idle' | 'downloading' | 'done' | 'error'
 
@@ -37,7 +38,7 @@ export function App() {
   }
 
   return <main className="shell">
-    <header><div className="brand"><span className="logo"><Music2 size={20}/></span><span>YToMP3</span></div><button className="icon-button" onClick={chooseFolder} title="Configurar pasta"><Settings2 size={19}/></button></header>
+    <header><div className="brand"><img className="logo-image" src={logoUrl} alt="YToMP3"/><span>YToMP3</span></div><button className="icon-button" onClick={chooseFolder} title="Configurar pasta"><Settings2 size={19}/></button></header>
     <section className="hero"><div className="eyebrow">YOUTUBE → MP3</div><h1>Seu áudio,<br/><em>do seu jeito.</em></h1><p>Baixe o áudio de qualquer vídeo do YouTube em MP3, sem complicação.</p></section>
     <section className="card">
       <label className="field-label"><Link size={16}/> LINK DO VÍDEO</label>
