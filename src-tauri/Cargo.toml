@@ -1,0 +1,21 @@
+[package]
+name = "ytomp3"
+version = "0.1.0"
+description = "Baixe áudio do YouTube e converta para MP3"
+authors = ["Bruno Silva Barbosa"]
+edition = "2021"
+
+[lib]
+name = "ytomp3_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+dirs = "6"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "native-tls"] }
+serde_json = "1"
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+url = "2"
