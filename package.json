@@ -1,6 +1,6 @@
 {
   "name": "ytomp3",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Baixe áudio do YouTube e converta para MP3.",
   "private": true,
   "license": "MIT",
