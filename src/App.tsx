@@ -29,8 +29,8 @@ export function App() {
     if (!folder) return setMessage('Escolha uma pasta para salvar os arquivos.')
     setState('downloading'); setMessage('Baixando e convertendo para MP3...')
     try {
-      const title = await invoke<string>('download_mp3', { url: url.trim(), outputDir: folder })
-      setState('done'); setMessage(`Concluído: ${title}`); setUrl('')
+      await invoke<string>('download_mp3', { url: url.trim(), outputDir: folder })
+      setState('done'); setMessage('Tudo pronto! O MP3 foi salvo na pasta escolhida.'); setUrl('')
     } catch (error) {
       setState('error'); setMessage(String(error))
     }

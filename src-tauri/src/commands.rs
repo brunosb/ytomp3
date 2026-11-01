@@ -38,5 +38,5 @@ pub fn download_mp3(app: AppHandle, url: String, output_dir: String) -> Result<S
   let template = output.join("%(title)s.%(ext)s");
   let result = Command::new(&ytdlp).args(["--ignore-config", "--no-playlist", "--no-warnings", "-x", "--audio-format", "mp3", "--audio-quality", "0", "--ffmpeg-location", ffmpeg.parent().unwrap_or(output).to_string_lossy().as_ref(), "-o", template.to_string_lossy().as_ref(), &url]).output().map_err(|e| format!("Não foi possível iniciar o yt-dlp: {e}"))?;
   if !result.status.success() { return Err(String::from_utf8_lossy(&result.stderr).trim().to_string()) }
-  let text = String::from_utf8_lossy(&result.stdout); Ok(text.lines().last().unwrap_or("Download concluído").trim().to_string())
+  Ok("MP3 salvo com sucesso".to_string())
 }
