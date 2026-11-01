@@ -983,11 +983,17 @@ Function CreateOrUpdateDesktopShortcut
     Return
   ${EndIf}
 
-  ; Skip creating shortcut if in update mode or no shortcut mode
-  ; but always create if migrating from wix
+  ; Refresh the shortcut icon during in-place updates.
+  ${If} $UpdateMode = 1
+    Delete "$DESKTOP\${PRODUCTNAME}.lnk"
+    CreateShortcut "$DESKTOP\${PRODUCTNAME}.lnk" "$INSTDIR\${MAINBINARYNAME}.exe" "$INSTDIR\icons\icon.ico" 0
+    !insertmacro SetLnkAppUserModelId "$DESKTOP\${PRODUCTNAME}.lnk"
+    Return
+  ${EndIf}
+
+  ; Skip creating shortcut when explicitly requested.
   ${If} $WixMode = 0
-    ${If} $UpdateMode = 1
-    ${OrIf} $NoShortcutMode = 1
+    ${If} $NoShortcutMode = 1
       Return
     ${EndIf}
   ${EndIf}
